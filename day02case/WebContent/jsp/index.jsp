@@ -121,10 +121,10 @@
 					</div>					
 					<c:forEach items="${newList }" var="pro">
 					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="product_info.htm">
+						<a href="${pageContext.request.contextPath}/product?method=findByPid&pid=${pro.pid}">
 							<img src="${pageContext.request.contextPath}/${pro.pimage}" width="130" height="130" style="display: inline-block;">
 						</a>
-						<p><a href="product_info.html" style='color:#666'>${pro.pname }</a></p>
+						<p><a href="${pageContext.request.contextPath}/product?method=findByPid&pid=${pro.pid}" style='color:#666'>${pro.pname }</a></p>
 						<p><font color="#E4393C" style="font-size:16px">&yen;${pro.shop_price }</font></p>
 					</div>
 					</c:forEach>

@@ -65,7 +65,7 @@
     <servlet-name>CodeServlet</servlet-name>
     <url-pattern>/code</url-pattern>
   </servlet-mapping>
-	<filter>
+  <filter>
     <display-name>AutoLoginFilter</display-name>
     <filter-name>AutoLoginFilter</filter-name>
     <filter-class>com.itheima.web.filter.AutoLoginFilter</filter-class>
@@ -74,4 +74,14 @@
     <filter-name>AutoLoginFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CartServlet</display-name>
+    <servlet-name>CartServlet</servlet-name>
+    <servlet-class>com.itheima.web.servlet.CartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CartServlet</servlet-name>
+    <url-pattern>/cart</url-pattern>
+  </servlet-mapping>
 </web-app>

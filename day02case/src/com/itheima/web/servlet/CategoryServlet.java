@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.itheima.domain.Category;
 import com.itheima.service.CateService;
 import com.itheima.service.impl.CateServiceImpl;
+import com.itheima.utils.BeanFactory;
 import com.itheima.web.base.BaseServlet;
 
 /**
@@ -18,9 +19,8 @@ import com.itheima.web.base.BaseServlet;
  */
 public class CategoryServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
-    CateService cateService=new CateServiceImpl();  
-    
-
+   //CateService cateService=new CateServiceImpl();
+   
 	/**
 	 * 查询商品分类的信息
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -29,6 +29,7 @@ public class CategoryServlet extends BaseServlet {
 		//response.setContentType("text/html;charset=utf-8");
 		try {
 			//调用service查询商品分类信息,完成业务逻辑
+			CateService cateService=(CateService) BeanFactory.getBean("CategoryService");
 			String categoryListJson = cateService.findCategory();
 			//把商品信息放到request中
 			response.getWriter().print(categoryListJson);

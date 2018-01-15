@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!doctype html>
 <html>
 
@@ -41,7 +42,7 @@
 				<a href="${pageContext.request.contextPath}/product?method=findByPid&pid=${p.pid}">
 					<img src="${pageContext.request.contextPath}/${p.pimage}" width="170" height="170" style="display: inline-block;">
 				</a>
-				<p><a href="${pageContext.request.contextPath}/product?method=findByPid&pid=${p.pid}" style='color:green'>${p.pname}</a></p>
+				<p><a href="${pageContext.request.contextPath}/product?method=findByPid&pid=${p.pid}" style='color:green'>${fn:substring(p.pname,0,12)}...</a></p>
 				<p><font color="#FF0000">商城价：&yen;${p.shop_price}</font></p>
 			</div>
 		</c:forEach>

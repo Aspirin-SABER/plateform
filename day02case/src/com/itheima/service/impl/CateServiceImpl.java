@@ -42,6 +42,7 @@ public class CateServiceImpl implements CateService {
 			jedis.set(Constant.CATEGORY_LIST_JSON, categoryListJson);
 			System.out.println("mysql中查询.....");
 		}
+		JedisPoolUtils.closeJedis(jedis);
 		return categoryListJson;
 		
 	}

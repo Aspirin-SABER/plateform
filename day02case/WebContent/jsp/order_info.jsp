@@ -26,68 +26,8 @@
 	</head>
 
 	<body>
-
+	<%@ include file="/jsp/head.jsp" %>
 	
-			<!--
-            	时间：2015-12-30
-            	描述：菜单栏
-            -->
-			<div class="container-fluid">
-				<div class="col-md-4">
-					<img src="${pageContext.request.contextPath}/img/logo2.png" />
-				</div>
-				<div class="col-md-5">
-					<img src="${pageContext.request.contextPath}/img/header.png" />
-				</div>
-				<div class="col-md-3" style="padding-top:20px">
-					<ol class="list-inline">
-						<li><a href="login.htm">登录</a></li>
-						<li><a href="register.htm">注册</a></li>
-						<li><a href="cart.htm">购物车</a></li>
-					</ol>
-				</div>
-			</div>
-			<!--
-            	时间：2015-12-30
-            	描述：导航条
-            -->
-			<div class="container-fluid">
-				<nav class="navbar navbar-inverse">
-					<div class="container-fluid">
-						<!-- Brand and toggle get grouped for better mobile display -->
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-							<a class="navbar-brand" href="#">首页</a>
-						</div>
-
-						<!-- Collect the nav links, forms, and other content for toggling -->
-						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-							<ul class="nav navbar-nav">
-								<li class="active"><a href="#">手机数码<span class="sr-only">(current)</span></a></li>
-								<li><a href="#">电脑办公</a></li>
-								<li><a href="#">电脑办公</a></li>
-								<li><a href="#">电脑办公</a></li>
-							</ul>
-							<form class="navbar-form navbar-right" role="search">
-								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Search">
-								</div>
-								<button type="submit" class="btn btn-default">Submit</button>
-							</form>
-
-						</div>
-						<!-- /.navbar-collapse -->
-					</div>
-					<!-- /.container-fluid -->
-				</nav>
-			</div>
-
-
 		<div class="container">
 			<div class="row">
 
@@ -96,7 +36,7 @@
 					<table class="table table-bordered">
 						<tbody>
 							<tr class="warning">
-								<th colspan="5">订单编号:9005 </th>
+								<th colspan="5">订单编号:${order.oid } </th>
 							</tr>
 							<tr class="warning">
 								<th>图片</th>
@@ -105,30 +45,32 @@
 								<th>数量</th>
 								<th>小计</th>
 							</tr>
+							<c:forEach items="${order.listItem }" var="oi">
 							<tr class="active">
 								<td width="60" width="40%">
 									<input type="hidden" name="id" value="22">
-									<img src="${pageContext.request.contextPath}/image/dadonggua.jpg" width="70" height="60">
+									<img src="${pageContext.request.contextPath}/${oi.product.pimage}" width="70" height="60">
 								</td>
 								<td width="30%">
-									<a target="_blank"> 有机蔬菜      大冬瓜...</a>
+									<a target="_blank">${oi.product.pname}</a>
 								</td>
 								<td width="20%">
-									￥298.00
+									￥${oi.product.shop_price}
 								</td>
 								<td width="10%">
-									5
+									${oi.count}
 								</td>
 								<td width="15%">
-									<span class="subtotal">￥596.00</span>
+									<span class="subtotal">￥${oi.subtotal }</span>
 								</td>
 							</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
 
 				<div style="text-align:right;margin-right:120px;">
-					商品金额: <strong style="color:#ff6600;">￥596.00元</strong>
+					商品金额: <strong style="color:#ff6600;">￥${order.total }元</strong>
 				</div>
 
 			</div>

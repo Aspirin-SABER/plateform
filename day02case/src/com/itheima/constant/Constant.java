@@ -12,4 +12,24 @@ public interface Constant {
 	 * 存放在redis中分类信息的key
 	 */
 	String CATEGORY_LIST_JSON = "CATEGORYLISTJSON";
+	/**
+	 * 订单状态
+	 * 未支付
+	 */
+	int ORDER_WEIZHIFU = 1;
+	/**
+	 * 订单状态
+	 * 未发货
+	 */
+	int ORDER_WEIFAHUO = 2;
+	/**
+	 * 订单状态
+	 * 已发货
+	 */
+	int ORDER_YIFAHUO = 3;
+	/**
+	 * 订单状态
+	 * 订单已完成
+	 */
+	int ORDER_YIWANCHENG = 4;
 }

@@ -19,9 +19,37 @@ import com.itheima.web.base.BaseServlet;
  */
 public class CartServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
-	ProductService pService=new ProductServiceImpl();  
-  
-	public String addCartItemToCart(HttpServletRequest request, HttpServletResponse response)  {
+	ProductService pService=new ProductServiceImpl(); 
+	/**
+	 * 清空购物车
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	public String clearCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//获取cart对象
+		Cart cart=this.getCart(request);
+		cart.clearCart();
+		return "/jsp/cart.jsp";
+				
+	}
+	/**
+	 * 删除购物车中的商品
+	 */
+	public String remoteCartItemToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String pid = request.getParameter("pid");
+		//获取cart对象
+		Cart cart=this.getCart(request);
+		cart.remoteCartItemToCart(pid);
+		return "/jsp/cart.jsp";
+	}
+	/**
+	 * 将商品添加到购物车
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	public String addCartItemToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
 		try {
 			//1.获取id,根据id查询商品
 			String pid = request.getParameter("pid");
@@ -35,7 +63,8 @@ public class CartServlet extends BaseServlet {
 			//获取cart对象
 			Cart cart=this.getCart(request);
 			cart.addCartItemToCart(ci);
-			return "/jsp/cart.jsp";
+			response.sendRedirect(request.getContextPath()+"/jsp/cart.jsp");
+			return null;
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("mag", "添加购物车失败...");

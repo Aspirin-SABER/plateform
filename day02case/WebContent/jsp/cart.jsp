@@ -35,6 +35,19 @@
 				padding: 0 10px;
 			}
 		</style>
+		<script type="text/javascript">
+			function deleteBypid(pid){
+				if(confirm("你是否确定删除")){
+					location.href="${pageContext.request.contextPath}/cart?method=remoteCartItemToCart&pid="+pid;
+				}
+			}
+			function deleteAll(){
+				if(confirm("你是否确定清空购物车")){
+					location.href="${pageContext.request.contextPath}/cart?method=clearCart";
+				}
+			}
+		
+		</script>
 	</head>
 
 	<body>
@@ -72,13 +85,13 @@
 									${ci.product.shop_price }
 								</td>
 								<td width="10%">
-									<input type="text" name="quantity" value="${ci.count }" maxlength="4" size="10">
+									<input type="text" name="count" value="${ci.count }" maxlength="4" size="10">
 								</td>
 								<td width="15%">
 									<span class="subtotal">${ci.subtotal }</span>
 								</td>
 								<td>
-									<a href="javascript:;" class="delete">删除</a>
+									<a href="javascript:;" class="delete" onclick="deleteBypid('${ci.product.pid}')">删除</a>
 								</td>
 							</tr>
 							</c:forEach>
@@ -95,7 +108,7 @@
 			</em> 赠送积分: <em style="color:#ff6600;">596</em>&nbsp; 商品金额: <strong style="color:#ff6600;">￥${cart.total }元</strong>
 				</div>
 				<div style="text-align:right;margin-top:10px;margin-bottom:10px;">
-					<a href="order_info.htm" id="clear" class="clear">清空购物车</a>
+					<a href="javascript:;" onclick="deleteAll()" class="clear">清空购物车</a>
 					<a href="order_info.htm">
 						<input type="submit" width="100" value="提交订单" name="submit" border="0" style="background: url('${pageContext.request.contextPath}/images/register.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
 						height:35px;width:100px;color:white;">

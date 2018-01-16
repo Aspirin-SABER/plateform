@@ -30,7 +30,41 @@ import com.itheima.web.base.BaseServlet;
  */
 public class OrderServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
-    OrderService oService=new OrderServiceImpl();  
+    OrderService oService=new OrderServiceImpl();
+    /**
+     * 修改订单状态
+     * @param request
+     * @param response
+     * @return
+     * @throws ServletException
+     * @throws IOException
+     */
+    public  String  findOrderByOid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	try {
+			//获取订单号
+			String oid = request.getParameter("oid");
+			//调用Service查询该订单的详细信息
+			OrderService oService=(OrderService)BeanFactory.getBean("OrderService");
+			Orders order=oService.findOrderByOid(oid);
+			request.setAttribute("order", order);
+			return "/jsp/order_info.jsp";
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			request.setAttribute("msg", "查询订单详细信息失败....");
+			return "/jsp/msg.jsp";
+		}
+    	
+    	
+    }
+    /**
+     * 查询我的订单分页显示
+     * @param request
+     * @param response
+     * @return
+     * @throws ServletException
+     * @throws IOException
+     */
     public  String  findMyOrderByPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	try {
 			//获取当前的页数

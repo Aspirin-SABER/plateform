@@ -42,7 +42,7 @@
 									<th colspan="2">订单编号:${order.oid } </th>
 									<th colspan="2">订单状态:
 										<c:if test="${order.state==1 }">
-											<a href="#">未支付</a>
+											<a href="${pageContext.request.contextPath}/order?method=findOrderByOid&oid=${order.oid}">未支付</a>
 										</c:if>
 										<c:if test="${order.state==2 }">
 											<a href="#">未发货</a>
@@ -93,21 +93,27 @@
 			</div>
 			<div style="text-align: center;">
 				<ul class="pagination">
-					<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-					<li class="active"><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">6</a></li>
-					<li><a href="#">7</a></li>
-					<li><a href="#">8</a></li>
-					<li><a href="#">9</a></li>
-					<li>
-						<a href="#" aria-label="Next">
+					<c:if test="${pb.pageNumber==1 }">
+					<li class="disabled"><span aria-hidden="true">&laquo;</span></li>
+					</c:if>
+					<c:if test="${pb.pageNumber!=1 }">
+					<li ><a href="${pageContext.request.contextPath}/order?method=findMyOrderByPage&pageNumber=${pb.pageNumber-1}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+					</c:if>
+					<c:forEach begin="1" end="${pb.totalPage }" var="n">
+					<li><a href="${pageContext.request.contextPath}/order?method=findMyOrderByPage&pageNumber=${n}">${n }</a></li>
+					</c:forEach>
+					<c:if test="${pb.pageNumber==pb.totalPage }">
+					<li class="disabled">
+							<span aria-hidden="true">&raquo;</span>
+					</li>
+					</c:if>
+					<c:if test="${pb.pageNumber!=pb.totalPage }">
+					<li >
+						<a href="${pageContext.request.contextPath}/order?method=findMyOrderByPage&pageNumber=${pb.pageNumber+1}" aria-label="Next">
 							<span aria-hidden="true">&raquo;</span>
 						</a>
 					</li>
+					</c:if>
 				</ul>
 			</div>
 		</div>

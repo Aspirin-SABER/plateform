@@ -53,5 +53,14 @@ public class OrderServiceImpl implements OrderService {
 			pb.setData(data);
 			return pb;
 	}
+	/**
+	 * 查询订单的详细信息
+	 */
+	@Override
+	public Orders findOrderByOid(String oid) throws Exception {
+		//调用dao层,先查询订单信息
+		OrderDao odao=(OrderDao)BeanFactory.getBean("OrderDao");
+		return odao.findOrderByOid(oid);
+	}
 
 }

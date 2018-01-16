@@ -16,4 +16,6 @@ public interface OrderDao {
 
 	List<Orders> findMyOrderByPage(int startIndex, int pageSize, String uid)throws Exception;
 
+	Orders findOrderByOid(String oid) throws Exception;
+
 }

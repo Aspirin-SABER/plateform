@@ -79,7 +79,7 @@
 					</div>
 
 					<div>
-						<img src="${pageContext.request.contextPath}/image/r___________renleipic_01/bigPic139f030b-d68b-41dd-be6d-b94cc568d3c5.jpg">
+						<img src="${pageContext.request.contextPath}/${pro.pimage}">
 					</div>
 
 					<div style="background-color:#d3d3d3;width:930px;padding:10px 10px;margin:10px 0 10px 0;">

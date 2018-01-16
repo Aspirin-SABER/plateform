@@ -50,6 +50,7 @@
 						<c:if test="${not empty user }">
 							<li>欢迎${user.username }</li>
 							<li><a href="${pageContext.request.contextPath }/user?method=loginout">退出</a></li>
+							<li><a href="${pageContext.request.contextPath }/order?method=findMyOrderByPage&pageNumber=1">我的订单</a></li>
 							<li><a href="${pageContext.request.contextPath }/jsp/cart.jsp">我的购物车</a></li>
 						
 						</c:if>

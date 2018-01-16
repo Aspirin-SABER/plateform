@@ -62,5 +62,13 @@ public class OrderServiceImpl implements OrderService {
 		OrderDao odao=(OrderDao)BeanFactory.getBean("OrderDao");
 		return odao.findOrderByOid(oid);
 	}
+	
+	@Override
+	public void update(Orders order) throws Exception {
+		//调用dao层,先查询订单信息
+		OrderDao odao=(OrderDao)BeanFactory.getBean("OrderDao");
+		odao.update(order);
+		
+	}
 
 }

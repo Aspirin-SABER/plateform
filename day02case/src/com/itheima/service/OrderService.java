@@ -13,4 +13,6 @@ public interface OrderService {
 
 	Orders findOrderByOid(String oid) throws Exception;
 
+	void update(Orders order)throws Exception;
+
 }

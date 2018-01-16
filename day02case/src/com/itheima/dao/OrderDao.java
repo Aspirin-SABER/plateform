@@ -18,4 +18,6 @@ public interface OrderDao {
 
 	Orders findOrderByOid(String oid) throws Exception;
 
+	void update(Orders order) throws Exception;
+
 }

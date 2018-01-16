@@ -94,4 +94,13 @@
     <servlet-name>OrderServlet</servlet-name>
     <url-pattern>/order</url-pattern>
   </servlet-mapping>
+  <filter>
+    <display-name>PrivilegeFilter</display-name>
+    <filter-name>PrivilegeFilter</filter-name>
+    <filter-class>com.itheima.web.filter.PrivilegeFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>PrivilegeFilter</filter-name>
+    <url-pattern>/order</url-pattern>
+  </filter-mapping>
 </web-app>

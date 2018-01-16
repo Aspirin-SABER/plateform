@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.itheima.utils.Privilege;
+
 /**
  * 基本的servlet
  * 目的:将每个servlet中的if() else() 分离
@@ -53,6 +55,16 @@ public class BaseServlet extends HttpServlet {
 			}
 			//获取指定方法并执行
 			Method method=clazz.getMethod(methodName, HttpServletRequest.class,HttpServletResponse.class);
+			//判断方法是否含有指定注解,如果包含判断用户是否登录
+			if(method.isAnnotationPresent(Privilege.class)){
+				// 判断用户是否登录
+				Object user = request.getSession().getAttribute("user");
+				if(user==null){
+					request.setAttribute("msg", "权限不足啊,请登录去吧...");
+					request.getRequestDispatcher("/jsp/msg.jsp").forward(request, response);
+					return;
+				}
+			}
 			String path=(String)method.invoke(this,request,response);
 			if(path!=null){
 				request.getRequestDispatcher(path).forward(request, response);

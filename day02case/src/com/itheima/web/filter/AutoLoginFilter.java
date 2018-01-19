@@ -59,7 +59,7 @@ public class AutoLoginFilter implements Filter {
 				value = URLDecoder.decode(value, "utf-8");
 				String username=value.split("-")[0];
 				String password=value.split("-")[1];
-				System.out.println("调用一次数据库");
+				//System.out.println("调用一次数据库");
 				User user = new UserServiceImpl().login(username, password);
 				if(user!=null){
 					req.getSession().setAttribute("user", user);

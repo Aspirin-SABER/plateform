@@ -1,5 +1,6 @@
 package com.itheima.service.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
@@ -11,6 +12,7 @@ import com.itheima.dao.CategoryDao;
 import com.itheima.dao.impl.CategoryDaoImpl;
 import com.itheima.domain.Category;
 import com.itheima.service.CateService;
+import com.itheima.utils.BeanFactory;
 import com.itheima.utils.C3P0Utils;
 import com.itheima.utils.JedisPoolUtils;
 
@@ -27,7 +29,7 @@ public class CateServiceImpl implements CateService {
 		//调用catedao查询商品信息
 		//List<Category> cate=catedao.findCategory();
 		//把cate转换成json
-		//String jsonStringCate = JSON.toJSONString(cate);
+		//String categoryListJson = JSON.toJSONString(cate);
 		//a.查询redis
 		Jedis jedis = JedisPoolUtils.getJedis();
 		//从Redis中获取数据
@@ -46,5 +48,41 @@ public class CateServiceImpl implements CateService {
 		return categoryListJson;
 		
 	}
+	/**
+	 * 添加分类商品的业务逻辑
+	 */
+	@Override
+	public void addCategory(String cid, String cname) throws Exception {
+		//调用dao层添加分类商品
+		CategoryDao dao=(CategoryDao)BeanFactory.getBean("CategoryDao");
+		dao.addCategory(cid,cname);
+		//获取Redis对象
+		Jedis jedis = JedisPoolUtils.getJedis();
+		jedis.del(Constant.CATEGORY_LIST_JSON);
+	}
+	/**
+	 * 根据cid查找商品分类
+	 */
+	@Override
+	public Category getBycId(String cid) throws Exception {
+		//调用dao层添加分类商品
+		CategoryDao dao=(CategoryDao)BeanFactory.getBean("CategoryDao");
+		return dao.getBycId(cid);
+	}
+	/**
+	 * 更新分类商品
+	 */
+	@Override
+	public void updateCategory(String cid, String cname) throws Exception {
+		//调用dao层添加分类商品
+		CategoryDao dao=(CategoryDao)BeanFactory.getBean("CategoryDao");
+		dao.updateCategory(cid,cname);
+		//获取Jedis对象
+		Jedis jedis = JedisPoolUtils.getJedis();
+		jedis.del(Constant.CATEGORY_LIST_JSON);
+		
+		
+	}
+	
 
 }

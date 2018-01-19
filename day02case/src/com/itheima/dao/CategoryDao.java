@@ -9,4 +9,11 @@ public interface CategoryDao {
 
 	List<Category> findCategory() throws Exception;
 
+	void addCategory(String cid, String cname)throws Exception;
+
+	Category getBycId(String cid)throws Exception;
+
+	void updateCategory(String cid, String cname)throws Exception;
+
+
 }

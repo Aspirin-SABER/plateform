@@ -211,6 +211,7 @@ public class OrderServlet extends BaseServlet {
      * @throws ServletException
      * @throws IOException
      */
+    @Privilege
     public  String  findMyOrderByPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	try {
 			//获取当前的页数

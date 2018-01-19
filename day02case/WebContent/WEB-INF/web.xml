@@ -103,4 +103,14 @@
     <filter-name>PrivilegeFilter</filter-name>
     <url-pattern>/order</url-pattern>
   </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminCategoryServlet</display-name>
+    <servlet-name>AdminCategoryServlet</servlet-name>
+    <servlet-class>com.itheima.web.servlet.AdminCategoryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminCategoryServlet</servlet-name>
+    <url-pattern>/adminCategory</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -26,6 +26,7 @@
 
 		        }    
 		    ]],
+		    //均分
 		    fitColumns:true,
 		 	// 只选中一个
 		    singleSelect:true,
@@ -49,9 +50,10 @@
 			success:function(data){
 				//0.将data文本装换为json对象
 				data = eval("("+data+")");
+				//alert(data);
 				//1.清空表单
 				$("#add_form").form('clear');
-				//2.关闭对话框
+				 //2.关闭对话框
 				$("#add_dialog").dialog('close');
 				//3.展示提示信息
 				$.messager.show({
@@ -81,9 +83,9 @@
 			success:function(data){
 				//0.将data文本转换问json
 				data=eval("("+data+")");
-				//alert(data);
+				alert(data);
 				//1.清空表单
-				$("#update_form").form('clear');
+				 $("#update_form").form('clear');
 				//2.关闭对话框
 				$("#update_dialog").dialog('close');
 				//3.提示信息显示
@@ -94,7 +96,7 @@
 					showType:'slide'
 				});
 				//4.刷新数据表格
-				$("#dg").datagrid('load');
+				$("#dg").datagrid('load'); 
 			}
 		});
 	}

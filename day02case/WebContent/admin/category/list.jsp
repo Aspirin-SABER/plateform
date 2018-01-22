@@ -35,7 +35,9 @@
 						//$("#winAdd").window("open");
 						$("#save_dialog").dialog("open");
 					}
-				}]
+				}],
+				// 显示分页条
+			    pagination:true
 			});
 		})
 	</script>

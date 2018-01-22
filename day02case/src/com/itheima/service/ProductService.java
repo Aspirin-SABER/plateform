@@ -15,4 +15,6 @@ public interface ProductService {
 
 	PageBean<Product> findProByPage(int pageNumber, int pageSize, String cid)throws Exception;
 
+	PageBean<Product> findPageProduct(int pageNumber, int pageSize) throws Exception;
+
 }

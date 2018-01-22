@@ -53,11 +53,11 @@
 	    <div data-options="region:'west',title:'菜单',split:true" style="width:200px;" data-options="">
 	    <!-- 手风琴 -->
 	    	<div id="aa" class="easyui-accordion" data-options="fit:true,border:false">   
-			    <div title="分类管理" data-options="iconCls:'icon-save',selected:true" style="overflow:auto;padding:10px;">   
+			    <div title="分类管理" data-options="iconCls:'icon-save'," style="overflow:auto;padding:10px;">   
 				<a href="${pageContext.request.contextPath }/admin/category/list1.jsp">分类列表</a> 
 			    </div>   
-			    <div title="商品管理" data-options="iconCls:'icon-reload'" style="padding:10px;">   
-			       	<a href="#"> 商品列表 </a>   
+			    <div title="商品管理" data-options="iconCls:'icon-reload',selected:true" style="padding:10px;">   
+			       	<a href="${pageContext.request.contextPath }/admin/product/list1.jsp"> 商品列表 </a>   
 			    </div>   
 			    <div title="用户管理">   
 					<a href="#">用户列表</a>

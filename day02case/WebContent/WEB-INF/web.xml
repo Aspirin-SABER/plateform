@@ -113,4 +113,14 @@
     <servlet-name>AdminCategoryServlet</servlet-name>
     <url-pattern>/adminCategory</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminProductServlet</display-name>
+    <servlet-name>AdminProductServlet</servlet-name>
+    <servlet-class>com.itheima.web.servlet.AdminProductServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminProductServlet</servlet-name>
+    <url-pattern>/adminProduct</url-pattern>
+  </servlet-mapping>
 </web-app>

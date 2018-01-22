@@ -84,5 +84,23 @@ public class ProductDaoImpl implements ProductDao {
 		Object[] params={cid,startIndex,pageSize};
 		return qr.query(sql, params, new BeanListHandler<>(Product.class));
 	}
+	/**
+	 * 查询商品的总条数
+	 */
+	@Override
+	public int findTotal() throws Exception {
+		QueryRunner qr = new QueryRunner(C3P0Utils.getDataSource());
+		String sql="select count(*) from product";
+		return ((Long)(qr.query(sql, new ScalarHandler()))).intValue();
+	}
+	/**
+	 * 查询商品的详细信息
+	 */
+	@Override
+	public List<Product> findPageProduct(int startIndex, int pageSize) throws Exception {
+		QueryRunner qr = new QueryRunner(C3P0Utils.getDataSource());
+		String sql="select * from product limit ?,?";
+		return qr.query(sql, new BeanListHandler<>(Product.class),startIndex,pageSize );
+	}
 
 }

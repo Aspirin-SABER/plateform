@@ -1,5 +1,6 @@
 package com.itheima.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.itheima.dao.ProductDao;
@@ -7,6 +8,7 @@ import com.itheima.dao.impl.ProductDaoImpl;
 import com.itheima.domain.PageBean;
 import com.itheima.domain.Product;
 import com.itheima.service.ProductService;
+import com.itheima.utils.BeanFactory;
 
 public class ProductServiceImpl implements ProductService {
 	ProductDao pdao=new ProductDaoImpl();
@@ -40,6 +42,21 @@ public class ProductServiceImpl implements ProductService {
 		//起始页的索引
 		int startIndex = pb.getStartIndex();
 		List<Product> list=pdao.findProByPage(startIndex,pageSize,cid);
+		pb.setData(list);
+		return pb;
+	}
+	/**
+	 * 分页查询商品的详细信息
+	 */
+	@Override
+	public PageBean<Product> findPageProduct(int pageNumber, int pageSize) throws Exception {
+		//调用到dao层查询商品的总条数
+		ProductDao dao=(ProductDao)BeanFactory.getBean("ProductDao");
+		int totalCount=dao.findTotal();
+		PageBean<Product> pb=new PageBean<>(pageNumber, pageSize, totalCount);
+		//查询商品的详细信息
+		int startIndex=pb.getStartIndex();
+		List<Product> list=dao.findPageProduct(startIndex,pageSize);
 		pb.setData(list);
 		return pb;
 	}

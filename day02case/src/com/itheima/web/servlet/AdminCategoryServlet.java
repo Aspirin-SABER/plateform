@@ -16,11 +16,31 @@ import com.itheima.utils.BeanFactory;
 import com.itheima.utils.UUIDUtils;
 import com.itheima.web.base.BaseServlet;
 
-/**
- * Servlet implementation class AdminCategoryServlet
- */
+
+
 public class AdminCategoryServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
+	public  String delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Map<String,String> mapMsg=new HashMap<>();
+		try {
+			//获取参数
+			String cid=request.getParameter("id");
+			//调用Service层完成添加的业务逻辑
+			CateService cateService=(CateService) BeanFactory.getBean("CategoryService");
+			cateService.delete(cid);
+			mapMsg.put("msg", "删除成功");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			mapMsg.put("msg", "删除失败");
+		}
+		String jsonString = JSON.toJSONString(mapMsg);
+		response.getWriter().print(jsonString);
+		return null;
+	}
+	/**
+	 * 根据Cid修改商品分类
+	 */
 	public  String updateCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String,String> mapMsg=new HashMap<>();
 		try {

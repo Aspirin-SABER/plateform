@@ -15,5 +15,7 @@ public interface CateService {
 
 	void updateCategory(String cid, String cname)throws Exception;
 
+	void delete(String cid)throws Exception;
+
 
 }

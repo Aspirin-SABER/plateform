@@ -20,4 +20,6 @@ public interface ProductDao {
 
 	List<Product> findPageProduct(int startIndex, int pageSize)throws Exception;
 
+	void addProduct(Product pro)throws Exception;
+
 }

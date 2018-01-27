@@ -102,5 +102,14 @@ public class ProductDaoImpl implements ProductDao {
 		String sql="select * from product limit ?,?";
 		return qr.query(sql, new BeanListHandler<>(Product.class),startIndex,pageSize );
 	}
+	@Override
+	public void addProduct(Product pro) throws Exception {
+		QueryRunner qr = new QueryRunner(C3P0Utils.getDataSource());
+		String sql="insert into product values(?,?,?,?,?,?,?,?,?,?)";
+		Object[] params={pro.getPid(),pro.getPname(),pro.getMarket_price(),pro.getShop_price(),
+				pro.getPimage(),pro.getPdate(),pro.getIs_hot(),pro.getPdesc(),pro.getPflag(),
+				pro.getCategory().getCid()};
+		qr.update(sql, params);
+	}
 
 }

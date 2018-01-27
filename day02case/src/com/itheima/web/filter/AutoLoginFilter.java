@@ -55,6 +55,7 @@ public class AutoLoginFilter implements Filter {
 			Cookie cookie=getCookie(req, "usernameAndPassword");
 			//如果Cookie不为空说明
 			if(cookie!=null){
+		
 				String value = cookie.getValue();
 				value = URLDecoder.decode(value, "utf-8");
 				String username=value.split("-")[0];

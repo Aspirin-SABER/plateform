@@ -45,4 +45,11 @@ public class CategoryDaoImpl implements CategoryDao {
 		String sql="update category set cname=?  where cid=?";
 		qr.update(sql, cname,cid);
 	}
+	@Override
+	public void delete(String cid) throws Exception {
+		QueryRunner qr = new QueryRunner(C3P0Utils.getDataSource());
+		String sql="delete from category where cid=?";
+		qr.update(sql,cid);
+		
+	}
 }

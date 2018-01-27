@@ -81,9 +81,32 @@
 		    valueField:'cid',    
 		    textField:'cname'   
 		});
+		
 
 	});
-
+	function save_product(){
+		$("#add_form").form('submit', {
+			url:"${pageContext.request.contextPath}/addProduct",
+			success:function(data){
+				//0.将文本转换问json对象
+				data=eval("("+data+")");
+				//1.清空表单
+				$("#add_form").form("clear");
+				//2.关闭对话框
+				$("#add_dialog").dialog("close");
+				//3.设置提示信息
+				$.messager.show({
+					title:'添加商品提示信息',
+					msg:data.msg,
+					timeout:2000,
+					showType:'slide'
+				});
+				//4.刷新
+				$("#dg").datagrid("load");
+			}
+					
+		})
+	}
 
 </script>
 </head>

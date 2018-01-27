@@ -83,6 +83,16 @@ public class CateServiceImpl implements CateService {
 		
 		
 	}
+	@Override
+	public void delete(String cid) throws Exception {
+		//调用dao层删除商品分类信息
+		CategoryDao dao=(CategoryDao)BeanFactory.getBean("CategoryDao");
+		dao.delete(cid);
+		//获取Jedis对象
+		Jedis jedis = JedisPoolUtils.getJedis();
+		jedis.del(Constant.CATEGORY_LIST_JSON);
+		
+	}
 	
 
 }

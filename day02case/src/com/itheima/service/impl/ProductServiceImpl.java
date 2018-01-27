@@ -60,6 +60,13 @@ public class ProductServiceImpl implements ProductService {
 		pb.setData(list);
 		return pb;
 	}
+	@Override
+	public void addProduct(Product pro) throws Exception {
+		//调用到dao层添加商品
+		ProductDao dao=(ProductDao)BeanFactory.getBean("ProductDao");
+		dao.addProduct(pro);
+		
+	}
 
 
 

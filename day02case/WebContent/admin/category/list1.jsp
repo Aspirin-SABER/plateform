@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -21,7 +22,7 @@
 		        {field:'cname',title:'分类名称',width:100,align:'center'}, 
 		        {field:'saber',title:'操作',width:100,align:'center',
 		        	formatter: function(value,row,index){
-						return "<a href='JavaScript:void(0)' onclick='findBycid(\""+row.cid+"\")'>修改</a>|删除";
+						return "<a href='JavaScript:void(0)' onclick='findBycid(\""+row.cid+"\")'>修改</a>|<a href='JavaScript:void(0)' onclick='deleteBycid(\""+row.cid+"\")'>删除</a>";
 					}
 
 		        }    
@@ -46,7 +47,7 @@
 	//添加分类商品
 	function saveCategory(){
 		$("#add_form").form('submit',{
-			url:"${pageContext.request.contextPath }/adminCategory",
+			url:"${pageContext.request.contextPath }/adminCategory?method=addCategory",
 			success:function(data){
 				//0.将data文本装换为json对象
 				data = eval("("+data+")");
@@ -83,7 +84,7 @@
 			success:function(data){
 				//0.将data文本转换问json
 				data=eval("("+data+")");
-				alert(data);
+				//alert(data);
 				//1.清空表单
 				 $("#update_form").form('clear');
 				//2.关闭对话框
@@ -99,6 +100,20 @@
 				$("#dg").datagrid('load'); 
 			}
 		});
+		//提交表单
+		//$("#update_form").submit();
+	}
+	function deleteBycid(cid){
+		$.messager.confirm('确认','您确认想要删除记录吗?',function(r){
+			if(r){
+				$.post("${pageContext.request.contextPath }/adminCategory?method=delete&id="+cid,function(data){
+					$.messager.alert('警告',data.msg);
+		    		//刷新表格
+					$("#dg").datagrid("reload");
+				},"json");
+			}
+		});
+		
 	}
 </script>
 </head>
@@ -149,7 +164,7 @@
 	   			</tr>
 	   			<tr  align="center">
 	   				<td colspan="2">
-	   					<input type="button" class="easyui-linkbutton" value="保存修改" onclick="updateCategory()" style="width:80px"/>
+	   					<input type="button"  value="保存修改" onclick="updateCategory()" style="width:80px"/>
 	   				</td>
 	   			</tr>
 	   		</table>
